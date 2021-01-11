@@ -5,7 +5,7 @@ Projeto destinado a utilização do spring boot assim como lombok, utilizando o 
 Começando
 Para iniciar no projeto é necesário a utilização das seguintes ferramentas:
 
-JDK 1.8
+JDK 1.8  
 Eclipse
 Lombok
 MySql
@@ -13,6 +13,9 @@ Git e GitHub
 Spring boot
 Maven
 Contrução
+Angular
+HTML
+CSS
 Para dar andamento do projeto é necessário criar um CRUD dos contatos.
 
 Equipe
