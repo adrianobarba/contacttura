@@ -80,29 +80,39 @@ public class ContactturaControllerUser {
 					}).orElse(ResponseEntity.notFound().build());
 		}
 		
-		@SuppressWarnings({"unlikely-arg-type"})
+//		@SuppressWarnings({"unlikely-arg-type"})
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@PostMapping
 		public ResponseEntity<User> salvar (@RequestBody User user){
 			
 			String username = user.getUsername();
-			
+			boolean admin = user.getAdmin();
 			boolean verificar = repository.existsByUsername(username);
 			
-			if(!verificar) {
-				repository.save(user);
-			}else {
-				return new ResponseEntity("Login ja existent", HttpStatus.BAD_REQUEST);
+//			if(!verificar) {
+//			repository.save(user);
+			
+			if(!verificar && admin) {
+
+				return new ResponseEntity("Administrador salvo", HttpStatus.OK);
 				
-			}
+			}else if(!verificar && !admin) {
+				
+				return new ResponseEntity("Usuário salvo", HttpStatus.OK);
+				
+			}else if(verificar) {
+			
+			return new ResponseEntity("Login já existe", HttpStatus.BAD_REQUEST);
+		}
 			
 			return new ResponseEntity<User>(user, HttpStatus.OK);
-		}
+		
+	}
 		
 		
 		
-		
-		
-		@SuppressWarnings("unlikely-arg-type")
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@GetMapping(value="/Login")
 		public ResponseEntity<User> login (@RequestBody User user) {
 			
