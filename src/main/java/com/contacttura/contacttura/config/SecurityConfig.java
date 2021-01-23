@@ -1,6 +1,7 @@
 package com.contacttura.contacttura.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,9 +20,16 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 	
-
-	
 	@Override
+	  protected void configure(HttpSecurity http) throws Exception{  
+	    
+	    http.csrf().disable().
+	    authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+	    .and().httpBasic();
+	  }
+	
+	
+/*	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 //		super.configure(http);
 	http.authorizeRequests()
@@ -30,9 +38,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 			.and()
 			.httpBasic()
 			.and()
-			.csrf().disable();
+			.csrf().disable();*/
 		
-	}
+	
 	
 	
 //  Método criado para autenticação do usuário em memória
