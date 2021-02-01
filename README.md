@@ -11,6 +11,7 @@ Lombok
 MySql
 Git e GitHub
 Spring boot
+Spring security
 Maven
 Contrução
 Angular
